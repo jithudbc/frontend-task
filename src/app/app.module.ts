@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { CountryListComponent } from './components/country-list/country-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CountryDetailsComponent } from './pages/country-details/country-details.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table'  
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { CountryDetailsComponent } from './pages/country-details/country-details
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    MatTableModule,
     StoreModule.forRoot({ search: searchReducer }),
     BrowserAnimationsModule,
     EffectsModule.forRoot([ AppEffects ]),
