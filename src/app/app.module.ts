@@ -9,10 +9,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { searchReducer } from './ngrx/reducers/search-reducer';
 import { AppEffects } from './ngrx/effects/app.effects';
 import { CommonModule } from '@angular/common';
+import { CountryListComponent } from './components/country-list/country-list.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CountryListComponent,
+    DashboardComponent,
+    CountryDetailsComponent,
   ],
   imports: [
     CommonModule,
