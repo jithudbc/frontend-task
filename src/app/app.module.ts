@@ -15,6 +15,9 @@ import { CountryDetailsComponent } from './pages/country-details/country-details
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'  
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule} from '@angular/material/input';
+import { FormsModule} from '@angular/forms';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     HttpClientModule,
     MatTableModule, 
     MatPaginatorModule,
+    MatInputModule,
+    FormsModule,
+    MatSortModule,
     StoreModule.forRoot({ search: searchReducer }),
     BrowserAnimationsModule,
     EffectsModule.forRoot([ AppEffects ]),

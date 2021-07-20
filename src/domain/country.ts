@@ -1,9 +1,10 @@
 export interface Country {
     name: string,
     capital:string,
-    currency:[],
+    area:number,
     language:string,
-    flag:string
+    flag:string,
+    borders: Array<String>
 }
 
 export interface CurrencyDetail extends Country {
