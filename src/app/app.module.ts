@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'  
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatTableModule } from '@angular/material/table'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatTableModule,
+    MatTableModule, 
+    MatPaginatorModule,
     StoreModule.forRoot({ search: searchReducer }),
     BrowserAnimationsModule,
     EffectsModule.forRoot([ AppEffects ]),
