@@ -7,13 +7,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CountryService {
+  columbia:string;
 
-  private countryUrl = 'https://restcountries.eu/rest/v2/all';
+  private allCountriesUrl = 'https://restcountries.eu/rest/v2/all';
+  private countryDetailUrl = `https://restcountries.eu/rest/v2/name`;
 
-  constructor( private http:HttpClient) { }
+  constructor( private http:HttpClient) {
+    this.columbia= 'columbia';
+   }
 
   getCountry(): Observable<Country[]> {
-    return this.http.get<Country[]>(this.countryUrl)
-    
+    return this.http.get<Country[]>(this.allCountriesUrl)
+  }
+
+  getCountryDetails(value:string): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.countryDetailUrl}/${value}`)
   }
 }

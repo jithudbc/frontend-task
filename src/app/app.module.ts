@@ -19,14 +19,16 @@ import { MatInputModule} from '@angular/material/input';
 import { FormsModule} from '@angular/forms';
 import {MatSortModule} from '@angular/material/sort';
 import { DetailsComponent } from './pages/details/details.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     CountryListComponent,
     DashboardComponent,
-    CountryDetailsComponent,
     DetailsComponent,
+    CountryDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +43,12 @@ import { DetailsComponent } from './pages/details/details.component';
     StoreModule.forRoot({ search: searchReducer }),
     BrowserAnimationsModule,
     EffectsModule.forRoot([ AppEffects ]),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [],
   bootstrap: [ AppComponent ],

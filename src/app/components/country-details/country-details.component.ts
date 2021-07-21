@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from 'src/app/service/country.service';
 
 @Component({
   selector: 'app-country-details',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./country-details.component.scss']
 })
 export class CountryDetailsComponent implements OnInit {
-
-  constructor() { }
+ 
+  constructor(private _http:CountryService) { }
 
   ngOnInit(): void {
-  }
+    this._http.getCountryDetails('colombia').subscribe({
+      next: (data) => {
+       console.log(data);
+        }
+      })
+      }
+    }
+    
+  
 
-}
+
