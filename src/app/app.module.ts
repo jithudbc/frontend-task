@@ -21,6 +21,10 @@ import {MatSortModule} from '@angular/material/sort';
 import { DetailsComponent } from './pages/details/details.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MatCardModule } from '@angular/material/card';
+import { countryReducer } from './ngrx/reducers/country-reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CountryEffects } from './ngrx/effects/country.effects';
 
 @NgModule({
   declarations: [
@@ -40,15 +44,17 @@ import { environment } from '../environments/environment';
     MatInputModule,
     FormsModule,
     MatSortModule,
-    StoreModule.forRoot({ search: searchReducer }),
+    MatCardModule,
+    StoreModule.forRoot({ countries: countryReducer }),
     BrowserAnimationsModule,
-    EffectsModule.forRoot([ AppEffects ]),
+    EffectsModule.forRoot([ CountryEffects ]),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [ AppComponent ],

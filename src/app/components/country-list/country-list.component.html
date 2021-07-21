@@ -1,9 +1,5 @@
 <mat-form-field>
-  <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Filter By Name and Region"
-  />
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filter By Name and Region" />
 </mat-form-field>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -40,12 +36,9 @@
       <th mat-header-cell *matHeaderCellDef>Borders</th>
       <td mat-cell *matCellDef="let element">
         <a href="#" routerLink="/details">
-          <span
-            (click)="getContryDetails(border); $event.stopPropagation()"
-            *ngFor="let border of element.borders; let last = last"
-            >{{ border }}{{ last ? "" : "," }}
-          </span></a
-        >
+          <span (click)="getContryDetails(border); $event.stopPropagation()"
+            *ngFor="let border of element.borders; let last = last">{{ border }}{{ last ? "" : "," }}
+          </span></a>
       </td>
     </ng-container>
 
@@ -56,12 +49,8 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      (click)="onRowClicked(row)"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+  <!-- <mat-paginator [pageSizeOptions]="[10]"></mat-paginator> -->
 </div>

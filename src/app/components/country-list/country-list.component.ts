@@ -1,10 +1,13 @@
 import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CountryService } from 'src/app/service/country.service';
-import { Country } from 'src/domain/country';
+import { Country } from 'src/model/country';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
+import { Store } from '@ngrx/store';
+import { getCountries} from '../../ngrx/actions/country.actions'
+import { CountryState } from 'src/app/ngrx/reducers/country-reducer';
 @Component({
   selector: 'app-country-list',
   templateUrl: './country-list.component.html',
@@ -20,29 +23,29 @@ export class CountryListComponent implements OnInit {
     'borders',
   ];
 
-  dataSource: any;
-
+   
+  countrySource$:Observable<any> = this.store.select('countries');
+  dataSource:any
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private _http: CountryService) {
-    this.dataSource={}
+  constructor(private _countryService: CountryService , private store:Store<CountryState> ) {
   }
 
   ngOnInit(): void {
-    this._http.getCountry().subscribe({
-      next: (data) => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.filterPredicate = function(data:any, filter: string): boolean {
-          return data.name.toLowerCase().includes(filter) || data.region.toLowerCase().includes(filter)
-        };
-      },
-    });
-    
+
+    this.countrySource$.subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+          this.dataSource.filterPredicate = function(data:any, filter: string): boolean {
+           return data.name.toLowerCase().includes(filter) || data.region.toLowerCase().includes(filter)
+           };
+    })
   }
+
+  
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource);
+   
   }
 
   onRowClicked(row: any) {
