@@ -1,54 +1,67 @@
 <mat-form-field>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filter By Name and Region" />
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Filter By Name and Region"
+  />
 </mat-form-field>
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Name Column -->
-        <ng-container matColumnDef="flag" class="p2">
-            <th mat-header-cell *matHeaderCellDef>Flag</th>
-            <td mat-cell *matCellDef="let element">
-                <img src="{{ element.flag }}" alt="" width="30px" height="30px" />
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Name</th>
-            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-        </ng-container>
-        <ng-container matColumnDef="region">
-            <th mat-header-cell *matHeaderCellDef>Region</th>
-            <td mat-cell *matCellDef="let element">{{ element.region }}</td>
-        </ng-container>
-        <ng-container matColumnDef="population">
-            <th mat-header-cell *matHeaderCellDef>Population</th>
-            <td mat-cell *matCellDef="let element">{{ element.population }}</td>
-        </ng-container>
-        <ng-container matColumnDef="area">
-            <th mat-header-cell *matHeaderCellDef>Area</th>
-            <td mat-cell *matCellDef="let element">{{ element.area }}</td>
-        </ng-container>
-        <ng-container matColumnDef="capital">
-            <th mat-header-cell *matHeaderCellDef>Capital</th>
-            <td mat-cell *matCellDef="let element">
-                {{ element.capital ? element.capital : "-" }}
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="borders">
-            <th mat-header-cell *matHeaderCellDef>Borders</th>
-            <td mat-cell *matCellDef="let element">
-                <span *ngFor="let border of element.borders; let last = last">{{ border }}{{ last ? "" : "," }}
-                </span>
-            </td>
-        </ng-container>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="flag" class="p2">
+      <th mat-header-cell *matHeaderCellDef>Flag</th>
+      <td mat-cell *matCellDef="let element">
+        <img src="{{ element.flag }}" alt="" width="30px" height="30px" />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="region">
+      <th mat-header-cell *matHeaderCellDef>Region</th>
+      <td mat-cell *matCellDef="let element">{{ element.region }}</td>
+    </ng-container>
+    <ng-container matColumnDef="population">
+      <th mat-header-cell *matHeaderCellDef>Population</th>
+      <td mat-cell *matCellDef="let element">{{ element.population }}</td>
+    </ng-container>
+    <ng-container matColumnDef="area">
+      <th mat-header-cell *matHeaderCellDef>Area</th>
+      <td mat-cell *matCellDef="let element">{{ element.area }}</td>
+    </ng-container>
+    <ng-container matColumnDef="capital">
+      <th mat-header-cell *matHeaderCellDef>Capital</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.capital ? element.capital : "-" }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="borders">
+      <th mat-header-cell *matHeaderCellDef>Borders</th>
+      <td mat-cell *matCellDef="let element">
+        <a href="#" routerLink="/details">
+          <span
+            (click)="getContryDetails(border); $event.stopPropagation()"
+            *ngFor="let border of element.borders; let last = last"
+            >{{ border }}{{ last ? "" : "," }}
+          </span></a
+        >
+      </td>
+    </ng-container>
 
-        <ng-container>
-            <tr class="mat-row" *matNoDataRow>
-                No data available for the filter value
-            </tr>
-        </ng-container>
+    <ng-container>
+      <tr class="mat-row" *matNoDataRow>
+        No data available for the filter value
+      </tr>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="onRowClicked(row)"
+    ></tr>
+  </table>
 
-    <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
 </div>

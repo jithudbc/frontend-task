@@ -11,13 +11,14 @@ import { AppEffects } from './ngrx/effects/app.effects';
 import { CommonModule } from '@angular/common';
 import { CountryListComponent } from './components/country-list/country-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CountryDetailsComponent } from './pages/country-details/country-details.component';
+import { CountryDetailsComponent } from './components/country-details/country-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'  
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule} from '@angular/material/input';
 import { FormsModule} from '@angular/forms';
 import {MatSortModule} from '@angular/material/sort';
+import { DetailsComponent } from './pages/details/details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {MatSortModule} from '@angular/material/sort';
     CountryListComponent,
     DashboardComponent,
     CountryDetailsComponent,
+    DetailsComponent,
   ],
   imports: [
     CommonModule,

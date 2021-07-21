@@ -56,4 +56,9 @@ export class CountryListComponent implements OnInit {
     console.log(this.dataSource);
   }
 
+  getContryDetails(event: Event){
+   
+    console.log(event);
+  }
+
 }
