@@ -10,7 +10,7 @@ export class CountryService {
   columbia:string;
 
   private allCountriesUrl = 'https://restcountries.eu/rest/v2/all';
-  private countryDetailUrl = `https://restcountries.eu/rest/v2/name`;
+  private countryDetailUrl = `https://restcountries.eu/rest/v2/alpha`;
 
   constructor( private http:HttpClient) {
     this.columbia= 'columbia';
@@ -20,7 +20,9 @@ export class CountryService {
     return this.http.get<Country[]>(this.allCountriesUrl)
   }
 
-  getCountryDetails(value:string): Observable<Country[]> {
-    return this.http.get<Country[]>(`${this.countryDetailUrl}/${value}`)
+  getCountryDetails(value:any): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.countryDetailUrl}/${value.alpha3Code}`)
   }
+
+  
 }
